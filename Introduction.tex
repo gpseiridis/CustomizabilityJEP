@@ -1,0 +1,116 @@
+\section{Introduction}
+
+\todo{To be refined and contextualized in the field of interoperability}    
+Handling variability is crucial for a company which places great emphasis on mass customization. 
+Software variability is defined as the ability of a software system or artifact to be changed, extended or configured for use in a specific context. 
+%As the variability is improved, the system can be easier customized (Svahnberg, Gurp, Bosch 2001). 
+Variability is a leading aspect of success in software engineering but at the same time a dominant reason for complexity augmentation~\cite{vonRhein2016}. % (Rhein et al. 2015). 
+%To exploit the benefits of variability, requirements between different stakeholders need to be addressed and different software solutions should be proposed. There is not a single software package which could satisfy all customers. Customization is therefore often presented as a solution to the needs of the different customers (Weiss \& Schweiggert 2013).
+
+
+
+%\section{Purpose and objective}
+
+%There is a risk of problems occurring between different systems due to their inability of to interpret correctly the given parameters.
+%Therefore, to mitigate this, e
+Effective variability management is required to enclose the activities needed to explicitly manage variability and handle the dependencies among the various software artefacts~\cite{Schmid2004}. %(Schmid \& John 2003 p260).
+
+
+In the concrete case of the Jeppesen Company, located in Gothenburg, Sweden, in each installation, their crew planning
+and tracking system is put into a unique system context that needs to exchange information
+with a varying set of other systems from different vendors. The timely and correct
+information exchange is crucial for the ability of the system to provide the expected services
+with expected quality. Especially for a tracking system, interoperability problems
+with surrounding systems can lead to severe impact on the airlines operation
+
+Due to the high degree of variation which is required, interface development has so far been the domain of customization. 
+These interfaces define the interpretation of the airline data. In the past, each airline had their own customer specific interfaces to communicate with the company's systems. This is what we refer to as the {\bf ``old system}". The company is currently striving to introduce standard interfaces. In this way they are expecting to move away from customer specific interfaces and impose a standard behaviour which will be followed by all airlines. This is what we refer to as the {\bf ``new system}". However, in the avionics field, it is a common phenomenon for different customers to use their own interpretation of otherwise well-defined standards and thus violating the imposed standard behaviour. 
+
+%Software product line engineering techniques cope with the high demand of variation among their products. Software product lines define a family of products which share commonalities and variations with each other and can be viewed as a family of products (Bosch Capilla \& Kang 2013). Product line techniques suggest ways to minimize the costs of development, maintenance and evolution of the software products (Svahnberg, Gurp \& Bosch, 2001 p2). The software companies are responsible for their products during all the life-cycles.
+%
+%
+%There is a significant area of research about handling software variability where a considerable amount
+%of different methods have already been proposed. These methods suggest patterns,
+%theoretical frameworks and tools, mainly in the context of software product lines. These methods work under the assumption that the maintenance of the software systems is being done completely by the company's side and that the required variation will live for very long.
+
+To make things even more complex, part of the system's code of Jeppesen %However, this is not the case for Jeppesen, as part of their system's code 
+is maintained by their customers. After the
+company delivers their systems, they lose control over customer specific source code. Their clients are responsible for partial code maintenance and compatibility of their systems. Therefore, the risk of incorrect interpretation of the provided parameters is high when one of the systems in the whole landscape is updated or replaced.
+
+
+%This study aims to support the customization efforts in a company which does not follow traditional product line engineering techniques. We asses and analyze the requirements, compare them with existing solutions and define whether they fit in our case. The outcome of this thesis are the guidelines to support future decision making for the customization needs of similar contexts based on the acquired knowledge, accompanied by solid reasoning.
+
+The goal of this work is to provide guidelines to 
+%guidelines to 
+support future and possibly unpredictable customization needs of a software system whose code maintenance is divided between the company and its customers. 
+%support future decision making for the customization needs triggered by future and possible new clients. 
+%similar contexts based on the acquired knowledge, accompanied by solid reasoning.
+
+%\section{Research questions}
+%We have defined two research questions to determine a decision making strategy. These research questions are as follows:\\
+
+%\textbf{RQ1:} What are the variability needs and what are the limitations of the interfaces?\\\\
+In order to suggest a method we needed first to understand the nature of the required variation of the interfaces.
+%This research question's aim was to let us understand the context and provide a basis to design a method to address the variability needs. 
+We therefore had to understand, why different airlines interpret well-defined standards in different ways, what causes faulty communication between different systems, which parts of the standard are still open for interpretation and how did the company so far managed the variability inside these interfaces. %To answer these questions, we interviewed experts inside the company about a specific standard interface. 
+%To gain an insight of the company's technical context we performed semi-structured interviews, a group interview and code analysis.
+
+
+ %To get the state-of-the-art of existing methods for variability handling, we performed literature review. The interviews were recorded, transcribed and analyzed further. 
+The knowledge gained %from the literature was documented and 
+has been then used to suggest a conceptualized solution.
+Finally, the solution has been implemented and validated.
+
+\todo{Guidelines}
+
+\todo{Context of the software center, interoperability project}
+
+\todo{Summary of the paper}
+
+%We defined two research questions which served as the main guidelines of the research. In this way, we expected to come closer to the research goal by answering them.
+%We later performed a trade-off analysis of the existing methods found in the generic literature. The purpose was to give solid argumentation of which method was more suitable in the problem under investigation. 
+%We later proceeded to develop a prototype and evaluate it.  
+%After the analysis phase was over, we tried to answer the second research question which was:  \\
+
+%\textbf{RQ2:} What are the guidelines to support the customization efforts of a software system whose code maintenance is divided between the company and its customers?
+%\\
+%Therefore, we defined the guidelines to support the customization efforts of a software system whose code maintenance is divided between the company and its customers.
+
+%This research question is concerned with providing the outcome of the thesis. Having obtained the context of the problem based on the first research question, we tried to suggest guidelines to effectively increase the customizability of their systems. These guidelines would be based on solid reasoning and evaluated to ensure the degree to which it is successful in facilitating the customization needs of the company under study and other companies with similar technical context.
+
+
+%\raggedbottom
+
+
+
+
+
+
+%\section{Scope and limitations} 
+%
+%This thesis focuses on the variability handling issues in the technical context of Jeppesen, located in Gothenburg, Sweden. Thus the conclusions of this study might not be applicable to other companies. Additionally, the main focus is placed on improving the customizability of the new system although we interviewed stakeholders working in the old system as well. However, the new system was supporting only one customer by the time this study took place.
+%It is therefore hard for our method to be integrated right away since the possible emerging use cases are not well known right now. 
+%
+%The basis of the study was placed on a single, rather complex interface where several aspects are affected at the same time. It is concerned about timetable information and although it is standardized, airlines still interpret it differently with each other. Each field in the standard is translated into semantics which systems can be understood my Jeppesen's system. However, since some fields are open for interpretation, the processing of the semantics could lead to incorrect results.
+%
+%
+%Later during this study, we decided to expand the scope to another interface to investigate whether the suggested method for the first interface could be replicated to a similar context.
+%This is the operational messages interface which can be considered as family of standards. Due to limited time, for this interface we took a more theoretical approach.
+
+%\section{Method} 
+%
+%The methodology followed the guidelines of design research as described in (Vaishnavi \& Kuechler, 2004). We tried to first understand the problem and create knowledge by implementing our conceived idea.  
+%To gain an insight of the company's technical context we performed semi-structured interviews, a group interview and code analysis. To get the state-of-the-art of existing methods for variability handling, we performed literature review. The interviews were recorded, transcribed and analyzed further. 
+%The knowledge gained from the literature was documented and used to suggest a conceptualized solution.
+%
+%We defined two research questions which served as the main guidelines of the research. In this way, we expected to come closer to the research goal by answering them.
+%We later performed a trade-off analysis of the existing methods found in the generic literature. The purpose was to give solid argumentation of which method was more suitable in the problem under investigation. 
+%We later proceeded to develop a prototype and evaluate it.  
+
+
+%\section{Outline of the thesis} 
+%
+%\noindent {\bf Structure of the paper:} this paper is structured as follows. In chapter 2 we present general information about the company and the systems they develop. In chapter 3 we present the key concepts of software customization and variability handling that this thesis is focused on and discuss the related work.
+%In chapter 4 we present the methodology we followed to deal with the variability problem under investigation.
+%In chapter 5 we discuss about the main variation points, the main indicators which influenced our decision making and a trade-off analysis of the main realization mechanisms.
+%In chapter 6 we discuss the development process while in chapter 7 we present the evaluation of our approach and the guidelines for future decision making. In chapter 8 we state the threats of validity. The study concludes in chapter 9 and suggestions for future work is presented.

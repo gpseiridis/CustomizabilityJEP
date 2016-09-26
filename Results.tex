@@ -1,0 +1,130 @@
+\section{Validation and Results}\label{sec:results}
+
+Our suggestion was heavily influenced by the company's customization needs. Therefore, our suggested method needed to be easy to introduce, implement, maintain and extend. In this chapter we  discuss the results of our findings by discussing the strengths and weaknesses of the method and the knowledge gained from this endeavour. 
+
+\subsection{Validation}
+
+The use cases handled by the prototype provided some satisfying results. In order to use the script repository, an airline company only needs to import our module and call one of the available methods by parsing parameters. The total amount of lines of code a customer needs to write in order to use a method from the repository approximately four or five, including the import of our module in the beginning. Including an additional method requires at maximum three extra lines of code.
+The company's current approach required approximately ten to fifteen lines of code for developing a customer specific method which inherits and overwrites part of the core implementation.
+
+Additionally, we developed our own test cases to validate that we were getting the expected results. The test cases compared a string of raw data input in the form of SSIM format to a string of the expected XML file. Their customers do not require to write the test cases by themselves. We have included commented test cases in a package where they can adjust fields of the SSIM and XML accordingly. In this way we hope that we can guarantee that our methods will work.
+
+Finally, there is no need for airlines to understand how the core's code or the methods inside the script repository work. The algorithms and data structures needed to handle these use cases as they have already been implemented from the company's side.
+
+\subsection{Evaluation}
+After the completion of our prototype, we proceeded to evaluate it by asking for feedback from company's stakeholders. Initially, we invited two key stakeholders to evaluate our approach. Based on this evaluation, we went on to discuss with a systems architect for refining our method. In this way we identified the guidelines for decision making which we describe in a later subsection on this chapter. After that, we invited stakeholders to our final evaluation where we presented our work, our suggested method for both SSIM and Operational Messages interfaces, the decision making process and ideas for future work. 
+
+
+\subsubsection{Preliminary feedback}
+We performed a presentation with two key stakeholders of the company to evaluate our suggested method. The first stakeholder was the developer who wrote the Python code of the integrator in the new system. The second stakeholder was a person who works in the service center of the company. 
+We used slides to show the idea behind our approach. These slides also included code parts which compare our method with the current implementation. The evaluation was recorded and later transcribed. %We present the main points from the feedback we got in this section.
+
+
+%% ( ---- )WEAKNESSES
+%At first, our approach received was treated with scepticism. The main reason was that they did not intend to maintain customer specific code at all. According to the first stakeholder, it is up to the clients to edit Python scripts to modify the system according to their needs, especially since Python language does not require to recompilation of the system.  
+%
+%The second reason was whether or not they could reuse the methods to handle customer specific issues. According to the first stakeholder, this approach would add up to the complexity of their system's modules. There were currently no concrete evidence to support the argument that customer specific methods could be reused. The reason was the use cases were unknown to them since the new system supported only one customer at that moment.   
+%
+%Additionally, he argued that this repository of methods could become potentially large and hard to be used; the clients might feel lost of which method they need to use, especially if some methods had to be used together.
+%The second stakeholder then also stated that he was sceptical for the degree on which the methods could be reused. As an example, he talked about the code sharing issue; whether it could be handled in the same way for multiple airlines or each airline had their own interpretation. 
+
+%On the other hand, our approach received some positive feedback as well. The person from the service center stated that our 
+On the positive side the two stakeholders judge judge that the approach simplifies the system's use from the client
+perspective. He argued that their clients are airlines and not IT companies.
+By following our approach they would enable their customers to focus on actually solving their real life problems, airline related problems, rather than programming in the system. The methods are viewed as black boxes from client's perspective and might be hard for them to edit them by their side.
+
+Finally, he stated that this would facilitate the overall understandability of the system. As an example, after a long period of time someone wants to dig back into the code, separating customer specific issues into a separate module would be easier to get an overview of the integrator.
+
+%The new system's developer also argued that o
+Moreover, our approach permits to avoid the replication of code for multiple clients and facilitate problems fixing. 
+%would be a good idea if more than one clients needs these functions. Furthermore, he added that, should there be a case where they realize a code is duplicated to multiple clients, providing some kind of utility would actually be a good idea. Additionally he stated that if they could find recurring patterns which are being used by many customers in other parts of their system this could be proven a good practice. 
+%However, he insisted that they currently prefer to duplicate code as they are not concerned with maintaining their customer's scripts from their side. 
+
+%An interesting comment was that the issue of suffix misuse could be embodied in the core implementation as it should be the same for all customers. This method did not take any arguments, it was simply called to fix a problem. Instead including it in a separate module, it could be manifested in the core instead. 
+
+%We have also obtained feedback from another stakeholder, a system's architect who is involved in the support team of the new system. According to her, 
+It is clear that the main argument to adopt our approach is whether or not the functions can be used from more than one customers. %She also added that o
+One of the expected benefits of our approach would be the reduced number of calls the company receives for technical support. 
+We summarize the results in Table~\ref{tab:preliminaryResults}. 
+% TABLE START
+
+\begin{table}[h]
+\centering
+{\small \begin{tabular}{p{4.3cm} l p{2.5cm}}
+\hline
+\multicolumn{1}{c}{{\bf Strengths}} & \multicolumn{2}{c}{{\bf Weaknesses} } \\
+[1ex]
+\hline
+$\bullet$ Effective approach for handling multiple recurring issues  &  & $\bullet$ Requires additional maintenance. Might increase complexity \\
+[1ex]
+\hline
+$\bullet$ Increase system's understandability    &  & $\bullet$ Tricky to handle too many methods   \\
+[1ex]
+\hline
+$\bullet$ Increase usability from client's perspective; focus is placed on solving their actual issues instead of writing code  &  & $\bullet$ It should not be included in the core   \\
+[3ex]
+\hline
+$\bullet$ Can reduce technical support requests     &  &          \\
+%[4ex]
+\hline
+\end{tabular}}
+\caption{Summary of the preliminary evaluation}\label{tlc}
+\label{tab:preliminaryResults}
+\end{table}
+%\hfill %\break
+% TABLE END
+
+
+\subsection{Final Evaluation }
+The final evaluation was performed after the refinement of our method based on the initial feedback. It took the form of a presentation and a number of stakeholders were invited to attend. These stakeholders were in total six; two software engineers and an architect of the new system, a system architect of the core development involved in both systems, a systems expert of the implementation department and a line manager. The list of people we invited, however, was longer but only those could attend our presentation that day.
+
+The presentation lasted almost an hour. We had prepared a few questions to ask beforehand. We kept notes of their answers highlighting their main points and immediately after the presentation was over we proceeded to documented the results. 
+
+We started by discussing the identified variability management mechanisms from the generic literature and the variation points of the SSIM interface. We then discussed the current approach of handling the customer specific requests, its strengths and possible risks. We used two examples to illustrate what could go wrong with the current method.
+
+Next, we introduced our suggested method and presented the preliminary feedback summarized in Table~\ref{tab:preliminaryResults}. At this point, we asked the stakeholders in the room for their opinion and why they think this way.
+
+
+%At this point, a software engineer expressed his scepticism. He explained that although he understands the idea behind our approach, he was still unsure whether this would effectively contribute to their customization efforts as the company has already provided a solution for the SSIM case. The system architect replied to him that the company has solved the customization needs of the SSIM already multiple times and the point was that they do not want to solve it again and again for every customer. She therefore believed that our suggested approach has potential to facilitate the customization needs in the long run. The software engineer then seemed to agree with her and so did the rest of the stakeholders in the room. 
+
+\noindent {\bf Facilitate customization needs.} A system architect aid that the company has solved the customization needs of the SSIM already multiple times and the point was that they do not want to solve it again and again for every customer. Therefore, the stakeholders agreed that our approach has the potential to facilitate the customization needs in the long run by providing a clear solution that can be then adopted for every new client.
+
+%At this point, we asked our audience whether they think our approach would increase the code quality from their customers side. More specifically, we asked whether they think our approach would assist their customers to write a better and cleaner code. The line manager stated that they always consider code quality as something very important and that he believed our suggestion could support this purpose. Additionally, the system architect stated that minimizing the dependencies and writing less lines of code for doing the same thing is always an improvement in the overall code quality.
+
+\noindent {\bf Improve code quality on the customer side.} Moreover, our approach promises to increase the code quality from their customers side and would assist their customers to write a better and cleaner code. Specifically, minimizing the dependencies and writing less lines of code for doing the same thing is always an improvement in the overall code quality.
+
+
+\noindent {\bf Architecture of the solution.} Stakeholders agreed on realizing variation points as shared components in the core, and by instantiating only the required functions for a customer or in the form of coding standards. 
+%We continued by presenting the guidelines for decision making to integrate a variation point based on its characteristics, as discussed in section 7.4.
+%These ways of integration were as a shared component in the core, by instantiating only the required functions for a customer or in the form of coding %standards. The audience seemed to agree. 
+Someone pointed out that sometimes, whether a component belongs to the core or in the customer layer is sometimes debatable. %Especially in the new system's architecture, it is even harder to know what is customization and what is core. 
+A general solution should be to try to push more into the core and less in the customization layer, especially for the tracking system. %and therefore he does not see a problem reusing parts as long as they appear to more than one customers.
+
+\noindent {\bf Variation points.} We then discussed the variation points for the Operational Messages interface. We briefly described each variation point and its variants along with suggestions of how each of these could be handled in our way. The audience seemed to agree, although they did not give any concrete feedback. 
+
+%We finally presented some ideas for future work. These triggered discussion among the stakeholders of how the company could support its customization needs more efficiently. One of these ideas was to maintain a knowledge repository. The stakeholders discussed about how sometimes do not know whether something should be in the customization layer or in the core, as there have been cases that were proven as more complex than originally thought or something appears second time and so on. Therefore, maintaining the knowledge of each project could support future decisions. However, they pointed that no one usually wants to work on it as it is viewed as a tedious task. The second idea for future work was an interactive questionnaire whose purpose would be to support the requirements elicitation by providing the right questions to ask their customers.
+
+In summary, the stakeholders agreed on integrating our solution (a script repository) in the company's code repository. 
+%
+%that maintaining from their side a repository of scripts could provide benefits in the long run. However, they do not plan to integrate it right away as there are still not concrete customer specific use cases and in general, they do not like to increase the overall maintenance by their side unless it is absolutely needed.
+%The general consensus for the decision making guidelines was that they could support their future decisions. Finally, the proposed future work received an overall positive feedback as it is intertwined with the company's current customization needs. 
+%
+%\subsection{Integration }
+%
+%Although the company's stakeholders stated that they can not integrate a script repository right away due to the lack of concrete use cases, we decided to pushed our prototype in the company's code repository.
+The prototype includes a few example use cases and their respective test cases and it is ready to be used. 
+%
+%Additionally, based on the initial feedback we received, we proceeded to discuss with one of the architects who is involved in both the new and the old system's architectural design, about other ways to integrate our approach. 
+We identified three different ways of integration. The selection among the above mechanisms is based on the expected level of reuse of each function.
+
+The first one is by making use of a shared component. These components are shared between all clients. The customers simply choose which function they need to call every time. This approach would only be useful if those functions are being used by more than one customer otherwise there is a risk of ending up containing dead code. This is aligned with the idea behind our prototype. 
+
+The second way would be to instantiate the required functions for a particular project only. The functions are embodied in the customization layer of the system, including only the functions required by each individual customer. In this way customers are not required to maintain functions they do not need. The maintenance is done by the company's side; the customers simply copy a subset of the functions they need.
+
+Finally, these functions might not be included at all to any component. Instead, they could take the form of documentation and coding standards. This could support the case where a function which can not be replicated to different customers and small adjustments need to be made each time. Coding standards could simplify the writing of those functions. In this way, there could be a common documentation instead of common code.
+
+It should be noted that these suggestions were part of the final evaluation where stakeholders agreed about them. As described later in the future work, a knowledge-base would facilitate the decision making of how each function should be integrated. 
+
+
+
+

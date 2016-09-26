@@ -1,0 +1,69 @@
+\section{Guidelines for decision making} 
+
+We performed this study in a context in which the company does not follow traditional software product lines methods, as the customers are expected to edit and maintain code in the customization layer while the company is mostly responsible for the  maintenance of the core implementation. In every customization case, decisions need to be taken. In the following we report lessons learned stigmatized into guidelines in an attempt to support future customization decisions.
+%The SSIM interface gave us a strong basis to perform our study. %Based on it, we document the guidelines in an attempt to support future customization decisions.
+
+Each variation point needs to be dealt independently and in isolation. The characteristics of each point need to be identified; based on these, the decision of how it is going to be integrated in the system is taken. We therefore create a list of questions to ask so as to understand these characteristics, followed by a list of variability handling mechanisms. 
+
+\subsection{Understanding the nature of the variation point} 
+
+The first question is what is the likelihood that the variation point will appear more than once. Is it a special case required by only one customer or does it appear to multiple customers? 
+
+The second questions is concerned with the collection of the variants and subsequently, the binding time. If the variation point is shared by all the customers, then the collection is explicit and it is bound in run time. 
+However, if the collection is implicit, the system is modified accordingly in build time.
+
+The third question is about the problem itself, whether it is a structural or a logical problem. A structural problem is concerned with translating the raw input in the correct semantics. A logical problem is concerned with how an algorithm manipulates the provided semantics.
+
+Finally, one important question is about the estimated complexity of the code to deal with a variation point. This means, it could either be a rather simple to write script from scratch, or it could require a deeper understanding of the system's core code and strong programming skills.
+
+%Is it rather simple to write a script from scratch, or does it understand a deeper understanding of the system's core code and good programming skills.
+\subsection{Implementation of a variation point} 
+
+Having defined the characteristics of the variation point, the next step is to decide how and where it should be implemented. Again, a few decisions need to be taken.
+
+The first one is about who is expected to write code. If the expected complexity to implement a customer specific use case is expected to be low and it is unlikely that it will appear more than once, then it is up to the customers to write code. However, if the complexity is expected to be high, or the variation point is likely to appear more than once, then the company's engineers would need to develop a high-quality function.
+
+
+Furthermore, if the problem type of the variation is a structural issue, the corresponding function could be encapsulated in the parser. If, on the other hand, it is a logical issue, an algorithm which provides diverse behaviour based on the given semantic input seems more of a reasonable option. 
+
+Finally, a mechanism which allows the users to access the variation point should be defined. If the collection of variants is explicit and their binding is done in run time, then the variation point should be embodied in the core of the system. In the opposite case, where the collection of variants is implicit and the binding is done in build time, the variation point could be part of the customization layer. It could be implemented as a new function, part of a repository of scripts, where clients simply choose those needed for their needs. If the variation point can be simply replicated by calling a function but requires to modify the function itself, the variation point could take the form of documentation and coding standards. 
+
+
+
+\section{ Conclusion}\label{sec:conclusion}
+
+Software customization has an impact throughout all the software life cycle such as requirements elicitation, the design of the system, development, deployment and maintenance. The majority of the existing research is suggesting ways of how to support customizability where a company follows traditional product lines approaches and the variations will live very long. 
+
+In the case of the company where this study was performed this was not the case. The company controls only the core part of the system and loses control of customer specific code. The customers are responsible for part of the code's maintenance. By the time the study took place they hardly had two customers using their newest system. 
+
+The aim of the study was to look further ahead and mitigate the risks which could potentially arise in the future. We explored the existing literature for methods, patterns and practices to suggest a way to handle variability in an easy, cheap and efficient way. 
+
+We provided a trade-off analysis of the available methods. Furthermore, we documented the work flow and how we conceived the suggested method in our study. We ambition that the findings of this work will provide a strong basis to facilitate customization efforts by companies of similar technical contexts. 
+
+The overall feedback we received  from the company's stakeholders suggested that our method will be integrated in the future by the company. We therefore encourage validation of the suggested methods through integration and the expansion of the guidelines of the decision making process. For this purpose, we have already pushed a repository containing a number of sample functions, ready to be used by the employees of the company.
+
+ %Additionally, we suggested ways for future work in section 9.1. 
+ %We do not expect that the findings of this study will either solve all the customization problems of the company, nor will they reshape the vast landscape of software customization.  We hope, however, that it will serve as a step forward to the vision of handling variability needs in an optimum way and add up to the existing knowledge for problems of similar nature. 
+ 
+
+
+
+%\section{Future work} 
+
+
+
+
+
+The evaluation of the proposed methods in this study were based on the feedback of various stakeholders of the company. To justify whether or not these methods would actually provide the expected benefits, integration with the company's new system is required. We hope that the prototype which we included in the company's code repository will be used by the employs and be validated further.
+
+
+
+Additionally, the guidelines as well as the lessons learned of this study and similar projects should be retained in some way. A knowledge-base could therefore facilitate the purpose of continuously improve and refine existent knowledge. Each project could be viewed as an opportunity to expand this knowledge repository. Furthermore, a knowledge repository would provide robust guidelines to drive future customization decisions. Especially in combination of our method, this preserved knowledge could help the engineers to decide which method should be included in a script repository and which should be part of the customization layer for example. This knowledge-base could also be expanded by asking people who worked with similar interfaces about their past experiences, worst cases they had and how they came up with certain solutions. 
+
+
+
+Finally, another idea would be to develop some sort of interactive questionnaire. The purpose of this tool is to support the requirements elicitation for interfaces in a structured way, by suggesting the appropriate questions to ask their customers. It could guide the identification of important information such as the different use cases and their frequency of change. The initial content of this tool could be based on the findings of this study and by performing some interviews about the general desired requirements information and their priority. It could be extended with more questions based on the experience gained from interfacing projects.
+
+We finally presented some ideas for future work. These triggered discussion among the stakeholders of how the company could support its customization needs more efficiently. One of these ideas was to maintain a knowledge repository. The stakeholders discussed about how sometimes do not know whether something should be in the customization layer or in the core, as there have been cases that were proven as more complex than originally thought or something appears second time and so on. Therefore, maintaining the knowledge of each project could support future decisions. However, they pointed that no one usually wants to work on it as it is viewed as a tedious task. The second idea for future work was an interactive questionnaire whose purpose would be to support the requirements elicitation by providing the right questions to ask their customers.
+
+
